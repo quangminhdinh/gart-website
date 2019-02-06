@@ -69,6 +69,11 @@
 	.gart-nav > span {
 		border: none !important;
 	}
+	
+	#fh5co-footer {
+		padding-top: 1.75em !important;
+		padding-bottom: 0.75em !important;
+	}
 }
 
 @media screen and (min-width: 1223px) {
