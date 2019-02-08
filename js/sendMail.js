@@ -19,7 +19,7 @@ function sendMail() {
 	var name = document.getElementById("form-contact-name");
 	var email = document.getElementById("form-contact-email");
 	var message = document.getElementById("form-contact-message");
-	var subject = "Website's contact - " + name.value;
+	var subject = "Website's contact - " + name.value + " - email: " + email.value;
     
     if (rq) {
         // Success; attempt to use an Ajax request to a PHP script to send the e-mail
@@ -33,7 +33,7 @@ function sendMail() {
 						alert("Failed to open the request; fall back to e-mail client");
                         window.location.replace('mailto:greenamsroboticsteam@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message.value));
                     } else if (this.status == 200) {
-						alert("Done!");
+						alert(this.responseText);
 						name.disabled = false;
 						email.disabled = false;
 						message.disabled = false;
@@ -49,7 +49,7 @@ function sendMail() {
             };
 
             rq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			rq.send("email="+ encodeURIComponent(email.value) + "&subject=" + encodeURIComponent(subject) + "&message=" + encodeURIComponent(message.value));
+			rq.send("subject=" + encodeURIComponent(subject) + "&message=" + encodeURIComponent(message.value));
         } catch (fail) {
             // Failed to open the request; fall back to e-mail client
 			alert("Failed to open the request; fall back to e-mail client");
