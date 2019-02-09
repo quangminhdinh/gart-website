@@ -19,7 +19,7 @@ function sendMail() {
 	var name = document.getElementById("form-contact-name");
 	var email = document.getElementById("form-contact-email");
 	var message = document.getElementById("form-contact-message");
-	var subject = "Website's contact - " + name.value + " - email: " + email.value;
+	var subject = "Website's contact - name:" + name.value;
     
     if (rq) {
         // Success; attempt to use an Ajax request to a PHP script to send the e-mail
@@ -41,7 +41,7 @@ function sendMail() {
 						email.value = "";
 						message.value = "";
 					}
-                } else if (this.readyState != 0) {
+                } else {
 					name.disabled = true;
 					email.disabled = true;
 					message.disabled = true;
@@ -49,7 +49,7 @@ function sendMail() {
             };
 
             rq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			rq.send("subject=" + encodeURIComponent(subject) + "&message=" + encodeURIComponent(message.value));
+			rq.send("email=" + encodeURIComponent(email.value) + "&name=" + encodeURIComponent(name.value) + "&message=" + encodeURIComponent(message.value));
         } catch (fail) {
             // Failed to open the request; fall back to e-mail client
 			alert("Failed to open the request; fall back to e-mail client");
