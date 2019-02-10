@@ -15,12 +15,17 @@ function getAjax() {
 }
 
 function sendMail() {
-    var rq = getAjax();
 	var name = document.getElementById("form-contact-name");
 	var email = document.getElementById("form-contact-email");
 	var message = document.getElementById("form-contact-message");
 	var subject = "Website's contact - name:" + name.value;
     
+	name.disabled = true;
+	email.disabled = true;
+	message.disabled = true;
+	
+	var rq = getAjax();
+	
     if (rq) {
         // Success; attempt to use an Ajax request to a PHP script to send the e-mail
         try {
@@ -41,11 +46,7 @@ function sendMail() {
 						email.value = "";
 						message.value = "";
 					}
-                } else {
-					name.disabled = true;
-					email.disabled = true;
-					message.disabled = true;
-				}
+                }
             };
 
             rq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

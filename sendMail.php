@@ -4,7 +4,7 @@
 	$pass = $mailInfo['gartDB']['pass'];
 	$dbname = $mailInfo['gartDB']['dbname'];
 	
-	$servername = "localhost";
+	$servername = $mailInfo['gartDB']['severname'];
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $pass, $dbname);
@@ -13,6 +13,8 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
+	
+	$conn->set_charset("utf8");
 
 	// prepare and bind
 	$stmt = $conn->prepare("INSERT INTO contact_services (name, email, message) VALUES (?, ?, ?)");
